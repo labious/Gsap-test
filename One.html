@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: rgb(224, 206, 206);
+            min-height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+        .header {
+            height: 10vh;
+            width: 100vw;
+            background-color: rgb(100, 110, 119);
+        }
+        .hero {
+            height: 80vh;
+            width: 100vw;
+            background-color: rgb(50, 144, 70);
+
+        }
+        .box {
+            height: 50vh;
+            width: 50vw;
+            background-color: rgb(177, 31, 50);
+            position: absolute;
+            left: -25vw;
+        }
+        .box2 {
+          height: 50vh;
+          width: 100vw;
+            background-color: rgb(112, 61, 194);
+            
+            left: -25vw;
+        }
+        .box2 {
+          height: 50vh;
+          width: 100vw;
+            background-color: rgb(112, 61, 194);
+            
+            left: -25vw;
+        }
+        .box3 {
+          height: 50vh;
+          width: 100vw;
+            background-color: rgb(72, 160, 31);
+            
+            left: -25vw;
+        }
+    </style>
+</head>
+<body class="container">
+    <div class="header">
+
+    </div>
+    <div class="hero">
+
+    </div>
+    <div class="box">Moving in</div>
+    <div class="box2">Box 2</div>
+    <div class="box3">Box 3</div>
+    <script src="./js/gsap.min.js"></script>
+    <script src="./js/ScrollTrigger.min.js"></script>
+<!--     <script>
+        gsap.to(".box", {
+  scrollTrigger: ".box", // start the animation when ".box" enters the viewport (once)
+  x: 1000
+});
+    </script> -->
+
+    <script>
+        let tl = gsap.timeline({
+    // yes, we can add it to an entire timeline!
+    scrollTrigger: {
+      trigger: ".container",
+      pin: true,   // pin the trigger element while active
+      start: "top top", // when the top of the trigger hits the top of the viewport
+      end: "+=100", // end after scrolling 500px beyond the start
+      scrub: 1, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
+      snap: {
+        snapTo: "labels", // snap to the closest label in the timeline
+        duration: {min: 0.2, max: 3}, // the snap animation should be at least 0.2 seconds, but no more than 3 seconds (determined by velocity)
+        delay: 0.2, // wait 0.2 seconds from the last scroll event before doing the snapping
+        ease: "power1.inOut" // the ease of the snap animation ("power3" by default)
+      }
+    }
+  });
+
+// add animations and labels to the timeline
+tl.addLabel("start")
+  .to(".box2", {x: 1000})
+  .addLabel("end");
+    </script>
+</body>
+</html>
